@@ -21,6 +21,8 @@ public class BasicControl : MonoBehaviour
     private float jumpDuration1;
     private float jumpDuration2;
     public float canJumpDuration;
+    public float canJumpDuration2;
+    public bool firstJump;
     //jump higher
     
     
@@ -29,32 +31,37 @@ public class BasicControl : MonoBehaviour
     void Start()
     {
         jumpDuration1 = canJumpDuration;
-        jumpDuration2 = canJumpDuration;
+        jumpDuration2 = canJumpDuration2;
         jumpCounter = canJumpTimes;
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if(isGrounded = Physics2D.OverlapCircle(groundPos.position, checkRadius, whatIsGround))
-            {
-            isGrounded = true;
-            
-            }
-        if(!isGrounded)
+        isGrounded = Physics2D.OverlapCircle(groundPos.position, checkRadius, whatIsGround);
+        if (isGrounded == true)
         {
-            isJumping=true;
+            jumpCounter = canJumpTimes;
+            jumpDuration1 = canJumpDuration;
+            jumpDuration2 = canJumpDuration2;
+            isJumping = false;
+            firstJump = false;
         }
+        if (isGrounded == false)
+        {
+            isJumping = true;
+        }
+
     }
 
 
     void Update()
     {
-        Run();
+        Move();
         Jump();
 
         
-        Debug.Log(moveInput);
+        Debug.Log(jumpDuration2);
 
     }
 
@@ -62,9 +69,10 @@ public class BasicControl : MonoBehaviour
     {
 
 
-        if (Input.GetKey(KeyCode.Space) && isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {               
-                rb.velocity = Vector2.up * jumpForce;            
+                rb.velocity = Vector2.up * jumpForce;
+            
         }
         if (Input.GetKey(KeyCode.Space)&&isJumping==true)
         {
@@ -73,43 +81,122 @@ public class BasicControl : MonoBehaviour
             {
                 
                 rb.velocity = (Vector2.up * jumpForce);
+                
                 jumpDuration1 -= Time.deltaTime;
+                
+                jumpDuration1 = Mathf.Clamp(jumpDuration1, 0, canJumpDuration);
+
             }
             else if (jumpDuration1 > 0 && moveInput == 1)
             {
 
                 rb.velocity = (Vector2.up * jumpForce)+ (Vector2.right * speed);
+                
                 jumpDuration1 -= Time.deltaTime;
+                
+                jumpDuration1 = Mathf.Clamp(jumpDuration1, 0, canJumpDuration);
             }
             else if (jumpDuration1 > 0 && moveInput == -1)
             {
 
                 rb.velocity = (Vector2.up * jumpForce) + (Vector2.left * speed);
+                
                 jumpDuration1 -= Time.deltaTime;
+               
+                jumpDuration1 = Mathf.Clamp(jumpDuration1, 0, canJumpDuration);
             }
 
+            
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)&& jumpCounter > 0 && !isGrounded)
+        if (firstJump == true)
         {
-            
-            
+
+
+            if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == 0)
+            {
+               
+
+
+
+
+
+                rb.velocity = (Vector2.up * jumpForce);
                 jumpDuration2 -= Time.deltaTime;
-                rb.velocity = Vector2.up * jumpForce;
+                Debug.Log("test");
+                jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
+                
+
+            }
+            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == 1)
+            {
+                
+
+
+
+
+                rb.velocity = (Vector2.up * jumpForce) + (Vector2.right * speed);
+                jumpDuration2 -= Time.deltaTime;
+                Debug.Log("test");
+                jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
+                
+            }
+            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == -1)
+            {
+                
+
+
+
+
+                rb.velocity = (Vector2.up * jumpForce) + (Vector2.left * speed);
+                jumpDuration2 -= Time.deltaTime;
+                Debug.Log("test");
+                jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
+                
+            }
+
+
+
+
+
+
+
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                jumpDuration2 = canJumpDuration2;
                 jumpCounter--;
+                if (jumpCounter==0&& Input.GetKeyUp(KeyCode.Space))
+                {
+                    jumpDuration2 = 0;
+                }
+
+
+            }
+
+
+
+
 
         }
-        if (isGrounded==true)
-        {
-            jumpCounter = canJumpTimes;
-            jumpDuration1 = canJumpDuration;
-            jumpDuration2 = canJumpDuration;
-            isJumping = false;
+        if (Input.GetKeyUp(KeyCode.Space))
+        { 
+            jumpDuration1 = 0;
+            firstJump = true;
+
         }
+        if (jumpDuration1 == canJumpDuration && isJumping == true)
+        {
+
+            firstJump = true;
+
+        }
+
+
 
     }
 
-    void Run()
+    void Move()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);

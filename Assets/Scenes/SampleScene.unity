@@ -502,6 +502,8 @@ MonoBehaviour:
     m_Bits: 256
   canJumpTimes: 1
   canJumpDuration: 0.1
+  canJumpDuration2: 0.1
+  firstJump: 0
   isJumping: 0
 --- !u!1 &1890990125
 GameObject:
