@@ -38,6 +38,9 @@ public class BasicControl : MonoBehaviour
     bool fast_isMovingRight = false;
     //run
 
+    private KeyCode moveLeftKey=KeyCode.LeftArrow;
+    private KeyCode moveRightKey=KeyCode.RightArrow;
+
 
     public bool isJumping=false;
 
@@ -91,12 +94,12 @@ public class BasicControl : MonoBehaviour
                 rb.velocity = Vector2.up * jumpForce;
             
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput == 1)
+        else if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput >0)
         {
             rb.velocity = Vector2.up * jumpForce + (Vector2.right * speed); ;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput == -1)
+        else if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput <0)
         {
             rb.velocity = Vector2.up * jumpForce + (Vector2.left * speed); ;
 
@@ -114,7 +117,7 @@ public class BasicControl : MonoBehaviour
                 jumpDuration1 = Mathf.Clamp(jumpDuration1, 0, canJumpDuration);
 
             }
-            else if (jumpDuration1 > 0 && moveInput == 1)
+            else if (jumpDuration1 > 0 && moveInput >0)
             {
 
                 rb.velocity = (Vector2.up * jumpForce)+ (Vector2.right * speed);
@@ -123,7 +126,7 @@ public class BasicControl : MonoBehaviour
                 
                 jumpDuration1 = Mathf.Clamp(jumpDuration1, 0, canJumpDuration);
             }
-            else if (jumpDuration1 > 0 && moveInput == -1)
+            else if (jumpDuration1 > 0 && moveInput <0)
             {
 
                 rb.velocity = (Vector2.up * jumpForce) + (Vector2.left * speed);
@@ -155,7 +158,7 @@ public class BasicControl : MonoBehaviour
                 
 
             }
-            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == 1)
+            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput >0)
             {
                 
 
@@ -168,7 +171,7 @@ public class BasicControl : MonoBehaviour
                 jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
                 
             }
-            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == -1)
+            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput <0)
             {
                 
 
@@ -226,12 +229,12 @@ public class BasicControl : MonoBehaviour
     void Run()
     {
         
-        moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
+        
 
-
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(moveLeftKey))
         {
             if (waitingForDoubleTap_Left)
             {
@@ -243,7 +246,7 @@ public class BasicControl : MonoBehaviour
             StartCoroutine(WaitForDoubleTap_Left());
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(moveRightKey))
         {
             if (waitingForDoubleTap_Right)
             {
@@ -255,13 +258,13 @@ public class BasicControl : MonoBehaviour
             StartCoroutine(WaitForDoubleTap_Right());
         }
 
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKeyUp(moveLeftKey))
         {
             normal_isMovingLeft = false;
             fast_isMovingLeft = false;
         }
 
-        if (Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(moveRightKey))
         {
             normal_isMovingRight = false;
             fast_isMovingRight = false;
