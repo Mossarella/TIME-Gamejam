@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BasicControl : MonoBehaviour
 {
@@ -24,8 +25,20 @@ public class BasicControl : MonoBehaviour
     public float canJumpDuration2;
     public bool firstJump;
     //jump higher
-    
-    
+
+
+    public float intervalOfDoubleTap;
+    public float fastMoveSpeed = 4f;
+    public float slowMoveSpeed = 2f;
+    bool waitingForDoubleTap_Left = false;
+    bool waitingForDoubleTap_Right = false;
+    bool normal_isMovingLeft = false;
+    bool fast_isMovingLeft = false;
+    bool normal_isMovingRight = false;
+    bool fast_isMovingRight = false;
+    //run
+
+
     public bool isJumping=false;
 
     void Start()
@@ -34,6 +47,8 @@ public class BasicControl : MonoBehaviour
         jumpDuration2 = canJumpDuration2;
         jumpCounter = canJumpTimes;
         rb = GetComponent<Rigidbody2D>();
+
+        
     }
 
     void FixedUpdate()
@@ -52,16 +67,18 @@ public class BasicControl : MonoBehaviour
             isJumping = true;
         }
 
+        RunFixedUpdate();
+
     }
 
 
     void Update()
     {
-        Move();
+        Run();
         Jump();
 
+
         
-        Debug.Log(jumpDuration2);
 
     }
 
@@ -69,10 +86,20 @@ public class BasicControl : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput == 0)
         {               
                 rb.velocity = Vector2.up * jumpForce;
             
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput == 1)
+        {
+            rb.velocity = Vector2.up * jumpForce + (Vector2.right * speed); ;
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput == -1)
+        {
+            rb.velocity = Vector2.up * jumpForce + (Vector2.left * speed); ;
+
         }
         if (Input.GetKey(KeyCode.Space)&&isJumping==true)
         {
@@ -196,22 +223,107 @@ public class BasicControl : MonoBehaviour
 
     }
 
-    void Move()
+    void Run()
     {
+        
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (waitingForDoubleTap_Left)
+            {
+                normal_isMovingLeft = false;
+                fast_isMovingLeft = true;
+            }
+            waitingForDoubleTap_Left = true;
+            normal_isMovingLeft = true;
+            StartCoroutine(WaitForDoubleTap_Left());
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (waitingForDoubleTap_Right)
+            {
+                normal_isMovingRight = false;
+                fast_isMovingRight = true;
+            }
+            waitingForDoubleTap_Right = true;
+            normal_isMovingRight = true;
+            StartCoroutine(WaitForDoubleTap_Right());
+        }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            normal_isMovingLeft = false;
+            fast_isMovingLeft = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            normal_isMovingRight = false;
+            fast_isMovingRight = false;
+        }
+
+
+
+
+
+
+
+
 
 
 
         if (moveInput < 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
+           
+
+
+
         }
 
-        if (moveInput > 0)
+        else if (moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
+            
         }
 
+   
+    }
+    private void RunFixedUpdate()
+    {
+        if (normal_isMovingLeft)
+        {
+            gameObject.transform.Translate(-1 * transform.right * Time.fixedDeltaTime * slowMoveSpeed);
+        }
+
+        if (fast_isMovingLeft)
+        {
+            gameObject.transform.Translate(-1 * transform.right * Time.fixedDeltaTime * fastMoveSpeed);
+        }
+
+        if (normal_isMovingRight)
+        {
+            gameObject.transform.Translate(transform.right * Time.fixedDeltaTime * slowMoveSpeed);
+        }
+
+        if (fast_isMovingRight)
+        {
+            gameObject.transform.Translate(transform.right * Time.fixedDeltaTime * fastMoveSpeed);
+        }
+    }
+    private IEnumerator WaitForDoubleTap_Left()
+    {
+        yield return new WaitForSecondsRealtime(intervalOfDoubleTap);
+        waitingForDoubleTap_Left = false;
+    }
+    private IEnumerator WaitForDoubleTap_Right()
+    {
+        yield return new WaitForSecondsRealtime(intervalOfDoubleTap);
+        waitingForDoubleTap_Right = false;
     }
 }
