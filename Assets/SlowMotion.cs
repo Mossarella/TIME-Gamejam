@@ -8,20 +8,23 @@ public class SlowMotion : MonoBehaviour
     private KeyCode shootKey = KeyCode.A;
 
 
+    private float canSlowTimeTimes;
+    [SerializeField] float maxCanSlowTimeTimes;
     public bool youMayStopTime;
     private float slowMoTime;
     private float haveTimeToTimeStop;
-    [SerializeField] float maxHaveTimeToTimeStop=4f;
-    [SerializeField] float maxSlowMoTime = 0.2f;
-    [SerializeField] float minSlowMoTime = 0.1f;
-    [SerializeField] float decayRate = 0.05f; //if this is too high,stop time lenght will be short
+    [SerializeField] float maxHaveTimeToTimeStop=6f;
+    [SerializeField] float maxSlowMoTime = 0.9f;
+    [SerializeField] float minSlowMoTime = 0.015f;
+    [SerializeField] float decayRate = 0.025f; //if this is too high,stop time lenght will be short
+    [SerializeField] float timeToEnterSlowMotion = 0.01f;  //if this is high,you will enter slowmo faster
 
-    
-    
+    BasicControl basicControl;
 
     void Start()
     {
-        
+        basicControl = GetComponent<BasicControl>();
+        haveTimeToTimeStop = maxHaveTimeToTimeStop;
     }
 
     // Update is called once per frame
@@ -29,12 +32,27 @@ public class SlowMotion : MonoBehaviour
     {
         if(Input.GetKey(shootKey))
         {
-            CountDownSoYouCanStopTimeAtThisLenght();
-            if (youMayStopTime==true)
-            {
-                TimeStop();
-            }
+            
+                
 
+
+
+
+                CountDownSoYouCanStopTimeAtThisLenght();
+                if (youMayStopTime == true)
+                {
+                    if (canSlowTimeTimes > 0)
+                    {
+                        TimeStop();
+                    }
+                }
+            
+            
+
+        }
+        if(Input.GetKeyDown(shootKey))
+        {
+            canSlowTimeTimes--;
         }
         if(Input.GetKeyUp(shootKey))
         {
@@ -42,15 +60,20 @@ public class SlowMotion : MonoBehaviour
             youMayStopTime = false;
             if(haveTimeToTimeStop==0)
             {
+                
                 Invoke("RefillLenghtSoYouCanStopTimeAgain",0.02f);
             }
+        }
+        if(basicControl.isGrounded == true)
+        {
+            canSlowTimeTimes = maxCanSlowTimeTimes;
         }
         if (youMayStopTime==false)
         {
             
-            stopTimeStop();
+            StopTimeStop();
         }
-        Debug.Log(haveTimeToTimeStop);
+        //Debug.Log(haveTimeToTimeStop);
     }
 
     private void CountDownSoYouCanStopTimeAtThisLenght()
@@ -70,9 +93,10 @@ public class SlowMotion : MonoBehaviour
         haveTimeToTimeStop = maxHaveTimeToTimeStop;
     }
 
-    
 
-    private void stopTimeStop()
+
+
+    private void StopTimeStop()
     {
         Time.timeScale = 1;
         slowMoTime = maxSlowMoTime;
@@ -84,7 +108,8 @@ public class SlowMotion : MonoBehaviour
         {
             slowMoTime=Mathf.Clamp(slowMoTime, minSlowMoTime, maxSlowMoTime);
             Time.timeScale = slowMoTime;
-            slowMoTime -=0.045f;
+            slowMoTime -= timeToEnterSlowMotion;
+            
         }
     }
 }

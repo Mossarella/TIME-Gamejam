@@ -9,6 +9,7 @@ public class BasicControl : MonoBehaviour
     private float moveInput;
 
     private Rigidbody2D rb;
+    //private CircleCollider2D circleCollider2D;
 
     public Transform groundPos;
     public bool isGrounded=false;
@@ -44,18 +45,32 @@ public class BasicControl : MonoBehaviour
 
     public bool isJumping=false;
 
+    //private Vector2 isGroundChecker;
+    //public GameObject isGroundCheckerObject;
+    //private float isGroundCheckerRadius;
+
     void Start()
     {
         jumpDuration1 = canJumpDuration;
         jumpDuration2 = canJumpDuration2;
         jumpCounter = canJumpTimes;
         rb = GetComponent<Rigidbody2D>();
+        //circleCollider2D = GetComponent<CircleCollider2D>();
+        
+
+        //isGroundCheckerRadius = isGroundCheckerObject.GetComponent<CircleCollider2D>().radius;
+        //isGrounded = Physics2D.OverlapCircle(groundPos.position, checkRadius, whatIsGround);
+        
 
         
+
     }
 
     void FixedUpdate()
     {
+        //isGroundChecker = GameObject.FindGameObjectWithTag("IsGroundChecker").transform.position;
+        //isGrounded = Physics2D.OverlapCircle(isGroundChecker, isGroundCheckerRadius, whatIsGround);
+
         isGrounded = Physics2D.OverlapCircle(groundPos.position, checkRadius, whatIsGround);
         if (isGrounded == true)
         {
@@ -328,5 +343,13 @@ public class BasicControl : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(intervalOfDoubleTap);
         waitingForDoubleTap_Right = false;
+    }
+
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundPos.position,checkRadius);
+
     }
 }
