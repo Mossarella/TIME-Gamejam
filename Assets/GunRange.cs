@@ -16,10 +16,10 @@ public class GunRange : MonoBehaviour
     public LayerMask whatIsEnemy;
     public int numberOfEnemyInRadius;
 
-    [SerializeField] int maxTarget;
+    
     public GameObject[] enemy;
     GameObject lockedTarget;
-    public Vector2 enemyPosition;
+    private Vector2 enemyPosition;
 
 
 
@@ -70,15 +70,15 @@ public class GunRange : MonoBehaviour
             
 
 
-            if (dist < fireRadius)
+            if (dist <= fireRadius)
             {
                 
                 lockedTarget = target;
                 enemyPosition = target.transform.position;
                 Debug.DrawLine(firePoint.position, lockedTarget.transform.position, Color.red, 0.1f);
-                Debug.Log(enemyPosition);
+                //Debug.Log(enemyPosition);
 
-                //Debug.Log(dist); Debug.Log(lockedTarget);
+                
             }
         }
 
