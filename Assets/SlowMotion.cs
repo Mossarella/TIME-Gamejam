@@ -122,7 +122,7 @@ public class SlowMotion : MonoBehaviour
             canSlowTimeTimes ++;
             RefillLenghtSoYouCanStopTimeAgain();
             
-            Debug.Log("wee");
+            //Debug.Log("wee");
         }
         
     }

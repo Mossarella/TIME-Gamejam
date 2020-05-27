@@ -74,7 +74,7 @@ public class DashToEnemy : MonoBehaviour
 
             Invoke("Eh", 0.15f);
 
-            Debug.Log(isDashing );
+            //Debug.Log(isDashing );
             
             
         }

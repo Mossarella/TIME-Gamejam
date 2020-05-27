@@ -1,44 +1,108 @@
 fileFormatVersion: 2
 guid: 885d51a3fca58c944930940125cce8f2
-timeCreated: 1528288244
-licenseType: Store
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: NewTilemapV1.2_0
-    21300002: NewTilemapV1.2_21
-    21300004: NewTilemapV1.2_22
-    21300006: NewTilemapV1.2_23
-    21300008: NewTilemapV1.2_24
-    21300010: NewTilemapV1.2_38
-    21300012: NewTilemapV1.2_43
-    21300014: NewTilemapV1.2_44
-    21300016: NewTilemapV1.2_45
-    21300018: NewTilemapV1.2_56
-    21300020: NewTilemapV1.2_57
-    21300022: NewTilemapV1.2_58
-    21300024: NewTilemapV1.2_63
-    21300026: NewTilemapV1.2_77
-    21300028: NewTilemapV1.2_78
-    21300030: NewTilemapV1.2_83
-    21300032: NewTilemapV1.2_97
-    21300034: NewTilemapV1.2_106
-    21300036: NewTilemapV1.2_142
-    21300038: NewTilemapV1.2_143
-    21300040: NewTilemapV1.2_147
-    21300042: NewTilemapV1.2_157
-    21300044: NewTilemapV1.2_162
-    21300046: NewTilemapV1.2_163
-    21300048: NewTilemapV1.2_164
-    21300050: NewTilemapV1.2_165
-    21300052: NewTilemapV1.2_176
-    21300054: NewTilemapV1.2_177
-    21300056: NewTilemapV1.2_182
-    21300058: NewTilemapV1.2_196
-    21300060: NewTilemapV1.2_197
-    21300062: NewTilemapV1.2_198
-    21300064: NewTilemapV1.2_1
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: NewTilemapV1.2_0
+  - first:
+      213: 21300002
+    second: NewTilemapV1.2_21
+  - first:
+      213: 21300004
+    second: NewTilemapV1.2_22
+  - first:
+      213: 21300006
+    second: NewTilemapV1.2_23
+  - first:
+      213: 21300008
+    second: NewTilemapV1.2_24
+  - first:
+      213: 21300010
+    second: NewTilemapV1.2_38
+  - first:
+      213: 21300012
+    second: NewTilemapV1.2_43
+  - first:
+      213: 21300014
+    second: NewTilemapV1.2_44
+  - first:
+      213: 21300016
+    second: NewTilemapV1.2_45
+  - first:
+      213: 21300018
+    second: NewTilemapV1.2_56
+  - first:
+      213: 21300020
+    second: NewTilemapV1.2_57
+  - first:
+      213: 21300022
+    second: NewTilemapV1.2_58
+  - first:
+      213: 21300024
+    second: NewTilemapV1.2_63
+  - first:
+      213: 21300026
+    second: NewTilemapV1.2_77
+  - first:
+      213: 21300028
+    second: NewTilemapV1.2_78
+  - first:
+      213: 21300030
+    second: NewTilemapV1.2_83
+  - first:
+      213: 21300032
+    second: NewTilemapV1.2_97
+  - first:
+      213: 21300034
+    second: NewTilemapV1.2_106
+  - first:
+      213: 21300036
+    second: NewTilemapV1.2_142
+  - first:
+      213: 21300038
+    second: NewTilemapV1.2_143
+  - first:
+      213: 21300040
+    second: NewTilemapV1.2_147
+  - first:
+      213: 21300042
+    second: NewTilemapV1.2_157
+  - first:
+      213: 21300044
+    second: NewTilemapV1.2_162
+  - first:
+      213: 21300046
+    second: NewTilemapV1.2_163
+  - first:
+      213: 21300048
+    second: NewTilemapV1.2_164
+  - first:
+      213: 21300050
+    second: NewTilemapV1.2_165
+  - first:
+      213: 21300052
+    second: NewTilemapV1.2_176
+  - first:
+      213: 21300054
+    second: NewTilemapV1.2_177
+  - first:
+      213: 21300056
+    second: NewTilemapV1.2_182
+  - first:
+      213: 21300058
+    second: NewTilemapV1.2_196
+  - first:
+      213: 21300060
+    second: NewTilemapV1.2_197
+  - first:
+      213: 21300062
+    second: NewTilemapV1.2_198
+  - first:
+      213: 21300064
+    second: NewTilemapV1.2_1
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -56,6 +120,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -66,7 +132,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -78,18 +144,22 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -99,7 +169,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Standalone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -109,6 +181,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -126,6 +199,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_21
       rect:
@@ -140,6 +220,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_22
       rect:
@@ -154,6 +241,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_23
       rect:
@@ -168,6 +262,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_24
       rect:
@@ -182,6 +283,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_38
       rect:
@@ -196,6 +304,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_43
       rect:
@@ -210,6 +325,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_44
       rect:
@@ -224,6 +346,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_45
       rect:
@@ -238,6 +367,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_56
       rect:
@@ -252,6 +388,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_57
       rect:
@@ -266,6 +409,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_58
       rect:
@@ -280,6 +430,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_63
       rect:
@@ -294,6 +451,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_77
       rect:
@@ -308,6 +472,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_78
       rect:
@@ -322,6 +493,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_83
       rect:
@@ -336,6 +514,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_97
       rect:
@@ -350,6 +535,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_106
       rect:
@@ -364,6 +556,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_142
       rect:
@@ -378,6 +577,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_143
       rect:
@@ -392,6 +598,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_147
       rect:
@@ -406,6 +619,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_157
       rect:
@@ -420,6 +640,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_162
       rect:
@@ -434,6 +661,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_163
       rect:
@@ -448,6 +682,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_164
       rect:
@@ -462,6 +703,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_165
       rect:
@@ -476,6 +724,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_176
       rect:
@@ -490,6 +745,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_177
       rect:
@@ -504,6 +766,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_182
       rect:
@@ -518,6 +787,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_196
       rect:
@@ -532,6 +808,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_197
       rect:
@@ -546,6 +829,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_198
       rect:
@@ -560,6 +850,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: NewTilemapV1.2_1
       rect:
@@ -574,9 +871,26 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

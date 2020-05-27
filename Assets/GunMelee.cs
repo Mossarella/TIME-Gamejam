@@ -5,16 +5,17 @@ using UnityEngine;
 public class GunMelee : MonoBehaviour
 {
 
-    private float timeBetweenAttack;
-    public float startTimeBetweenAttack;
+    public float attackRate;
+    private float nextAttackTime; //never change this value
 
-    private KeyCode meleeAttackButton;
+    private KeyCode meleeAttackButton=KeyCode.A;
 
     public Transform attackCircle;
     public LayerMask whatIsEnemy;
     [SerializeField] float attackRange;
 
-    public int damage;
+    public int myDamage;
+    
 
 
 
@@ -26,25 +27,35 @@ public class GunMelee : MonoBehaviour
     
     void Update()
     {
-        if (timeBetweenAttack<=0)
+        if(Time.time>=nextAttackTime)
         {
-            timeBetweenAttack = startTimeBetweenAttack;
             if (Input.GetKeyDown(meleeAttackButton))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackCircle.position,attackRange,whatIsEnemy);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
-                }
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
             }
-            timeBetweenAttack = startTimeBetweenAttack;
         }
-        else
-        {
-            timeBetweenAttack -= Time.deltaTime;
-        }
-        
+
+
+        Debug.Log(nextAttackTime);
+
+
+
     }
+
+    public void Attack()
+    {
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackCircle.position, attackRange, whatIsEnemy);
+
+
+        foreach (Collider2D enemy in enemiesToDamage)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(myDamage);
+            Debug.Log("we got him");
+            
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
