@@ -20,9 +20,10 @@ public class SlowMotion : MonoBehaviour
     [SerializeField] float timeToEnterSlowMotion = 0.01f;  //if this is high,you will enter slowmo faster
 
     BasicControl basicControl;
-
+    public DashToEnemy dashToEnemy;
     void Start()
     {
+        dashToEnemy=GetComponent<DashToEnemy>();
         basicControl = GetComponent<BasicControl>();
         haveTimeToTimeStop = maxHaveTimeToTimeStop;
     }
@@ -73,7 +74,9 @@ public class SlowMotion : MonoBehaviour
             
             StopTimeStop();
         }
-        //Debug.Log(haveTimeToTimeStop);
+        //Debug.Log(canSlowTimeTimes);
+
+        CanStopTimeAgainAfterDash();
     }
 
     private void CountDownSoYouCanStopTimeAtThisLenght()
@@ -88,7 +91,7 @@ public class SlowMotion : MonoBehaviour
             youMayStopTime = false;
         }
     }
-    private void RefillLenghtSoYouCanStopTimeAgain()
+    public void RefillLenghtSoYouCanStopTimeAgain()
     {
         haveTimeToTimeStop = maxHaveTimeToTimeStop;
     }
@@ -111,5 +114,16 @@ public class SlowMotion : MonoBehaviour
             slowMoTime -= timeToEnterSlowMotion;
             
         }
+    }
+    public void CanStopTimeAgainAfterDash()
+    {
+        if (dashToEnemy.isDashing == true )
+        {
+            canSlowTimeTimes ++;
+            RefillLenghtSoYouCanStopTimeAgain();
+            
+            Debug.Log("wee");
+        }
+        
     }
 }

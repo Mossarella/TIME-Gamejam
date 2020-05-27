@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - IsGroundChecker
-  - Enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -15,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Enemy
-  - 
-  - 
+  - Solid
+  - OneWay
+  - Bumper
+  - Ladders
   - 
   - 
   - 

@@ -16,7 +16,9 @@ public class BasicControl : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
     
-    private int jumpCounter;
+    public int jumpCounter;//jumpleft
+    public int bonusJump;
+    public int defaultBonusJump=0;
     public int canJumpTimes;
     //double jump
 
@@ -45,6 +47,10 @@ public class BasicControl : MonoBehaviour
 
     public bool isJumping=false;
 
+    
+
+   public DashToEnemy dashToEnemy;
+
     //private Vector2 isGroundChecker;
     //public GameObject isGroundCheckerObject;
     //private float isGroundCheckerRadius;
@@ -56,7 +62,7 @@ public class BasicControl : MonoBehaviour
         jumpCounter = canJumpTimes;
         rb = GetComponent<Rigidbody2D>();
         //circleCollider2D = GetComponent<CircleCollider2D>();
-        
+        dashToEnemy = GetComponent<DashToEnemy>();
 
         //isGroundCheckerRadius = isGroundCheckerObject.GetComponent<CircleCollider2D>().radius;
         //isGrounded = Physics2D.OverlapCircle(groundPos.position, checkRadius, whatIsGround);
@@ -79,6 +85,7 @@ public class BasicControl : MonoBehaviour
             jumpDuration2 = canJumpDuration2;
             isJumping = false;
             firstJump = false;
+            bonusJump = defaultBonusJump ;
         }
         if (isGrounded == false)
         {
@@ -94,15 +101,18 @@ public class BasicControl : MonoBehaviour
     {
         Run();
         Jump();
+        Increasejump();
 
-
+       
         
+
+
 
     }
 
     void Jump()
     {
-
+        jumpCounter = Mathf.Clamp(jumpCounter, 0, canJumpTimes+1);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true && moveInput == 0)
         {               
@@ -158,9 +168,9 @@ public class BasicControl : MonoBehaviour
         {
 
 
-            if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == 0)
+            if ((jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput == 0))
             {
-               
+
 
 
 
@@ -172,10 +182,11 @@ public class BasicControl : MonoBehaviour
                 jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
                 
 
+
             }
-            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput >0)
+            else if ((jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput > 0))
             {
-                
+
 
 
 
@@ -185,10 +196,11 @@ public class BasicControl : MonoBehaviour
                 Debug.Log("test");
                 jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
                 
+
             }
-            else if (jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput <0)
+            else if ((jumpCounter > 0 && Input.GetKey(KeyCode.Space) && !isGrounded && jumpDuration2 > 0 && moveInput < 0))
             {
-                
+
 
 
 
@@ -198,12 +210,11 @@ public class BasicControl : MonoBehaviour
                 Debug.Log("test");
                 jumpDuration2 = Mathf.Clamp(jumpDuration2, 0, canJumpDuration2);
                 
+
             }
 
 
-
-
-
+            
 
 
 
@@ -211,10 +222,11 @@ public class BasicControl : MonoBehaviour
             {
                 jumpDuration2 = canJumpDuration2;
                 jumpCounter--;
-                if (jumpCounter==0&& Input.GetKeyUp(KeyCode.Space))
+
+                /*if (jumpCounter==-1&& Input.GetKeyUp(KeyCode.Space))
                 {
                     jumpDuration2 = 0;
-                }
+                }*/
 
 
             }
@@ -240,14 +252,43 @@ public class BasicControl : MonoBehaviour
 
 
     }
+    public void Increasejump()
+    {
+        if (dashToEnemy.isDashing == true&&jumpCounter!=canJumpTimes)
+        {
+            dashToEnemy.isDashing = false;
+            jumpCounter += 1;
+            Debug.Log(jumpDuration2);
+        }
+        else if (dashToEnemy.isDashing == true&&jumpCounter==canJumpTimes)
+        {
+            dashToEnemy.isDashing = false;
+            
+
+        }
+    }
 
     void Run()
     {
         
-        moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
         
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+           
+            moveInput = Input.GetAxis("Horizontal") * Time.fixedDeltaTime * speed;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+           
+            moveInput = Input.GetAxis("Horizontal")*Time.fixedDeltaTime * speed;
+        }
+        else
+        {
+            moveInput = 0;
+           
+        }
+
+
 
         if (Input.GetKeyDown(moveLeftKey))
         {
