@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(maxHealth);
+        //print(maxHealth);
     }
     public void TakeDamage(int damage)
     {

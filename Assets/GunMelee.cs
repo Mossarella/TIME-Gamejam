@@ -37,7 +37,7 @@ public class GunMelee : MonoBehaviour
         }
 
 
-        Debug.Log(nextAttackTime);
+        //Debug.Log(nextAttackTime);
 
 
 

@@ -8,16 +8,22 @@ public class SlowMotion : MonoBehaviour
     private KeyCode shootKey = KeyCode.A;
 
 
-    private float canSlowTimeTimes;
+    public float canSlowTimeTimes;
     [SerializeField] float maxCanSlowTimeTimes;
     public bool youMayStopTime;
     private float slowMoTime;
-    private float haveTimeToTimeStop;
-    [SerializeField] float maxHaveTimeToTimeStop=6f;
+    public float haveTimeToTimeStop;
+    [SerializeField] public float maxHaveTimeToTimeStop=6f;
     [SerializeField] float maxSlowMoTime = 0.9f;
     [SerializeField] float minSlowMoTime = 0.015f;
     [SerializeField] float decayRate = 0.025f; //if this is too high,stop time lenght will be short
     [SerializeField] float timeToEnterSlowMotion = 0.01f;  //if this is high,you will enter slowmo faster
+    public bool canDash;
+
+    public float timeToEnterAfterPress = 0.15f; //dont change;
+    public float timeAfterPress;
+    public float timeOutPress;
+    
 
     BasicControl basicControl;
     public DashToEnemy dashToEnemy;
@@ -31,52 +37,82 @@ public class SlowMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(timeAfterPress);
+        
         if(Input.GetKey(shootKey))
         {
-            
+            timeAfterPress += Time.deltaTime;
+            timeOutPress += Time.deltaTime;
+
+            if (timeAfterPress>=timeToEnterAfterPress)
+            {
+                PressTheKey();
                 
+            }
 
-
-
-
-                CountDownSoYouCanStopTimeAtThisLenght();
-                if (youMayStopTime == true)
-                {
-                    if (canSlowTimeTimes > 0)
-                    {
-                        TimeStop();
-                    }
-                }
-            
             
 
         }
-        if(Input.GetKeyDown(shootKey))
+       
+        if(Input.GetKeyUp(shootKey))
+        {
+            if(timeAfterPress<=timeToEnterAfterPress)
+            {
+                timeAfterPress = 0;
+            }
+
+            
+            timeOutPress = 0;
+            haveTimeToTimeStop = 0;
+            youMayStopTime = false;
+            if (haveTimeToTimeStop == 0)
+            {
+
+                Invoke("RefillLenghtSoYouCanStopTimeAgain", 0.02f);
+            }
+        }
+        if (Input.GetKeyDown(shootKey))
         {
             canSlowTimeTimes--;
         }
-        if(Input.GetKeyUp(shootKey))
+
+        if (basicControl.isGrounded == true)
         {
-            haveTimeToTimeStop = 0;
-            youMayStopTime = false;
-            if(haveTimeToTimeStop==0)
-            {
-                
-                Invoke("RefillLenghtSoYouCanStopTimeAgain",0.02f);
-            }
+            canSlowTimeTimes = maxCanSlowTimeTimes+1;
         }
-        if(basicControl.isGrounded == true)
+        if (youMayStopTime == false)
         {
-            canSlowTimeTimes = maxCanSlowTimeTimes;
-        }
-        if (youMayStopTime==false)
-        {
-            
+
             StopTimeStop();
         }
-        //Debug.Log(canSlowTimeTimes);
+        
 
-        CanStopTimeAgainAfterDash();
+        
+    }
+
+    public void PressTheKey()
+    {
+        
+
+
+
+
+
+
+            CountDownSoYouCanStopTimeAtThisLenght();
+            if (youMayStopTime == true)
+            {
+                if (canSlowTimeTimes > 0)
+                {
+                    TimeStop();
+                }
+            }
+
+
+
+        
+        
+        
     }
 
     private void CountDownSoYouCanStopTimeAtThisLenght()
@@ -84,10 +120,12 @@ public class SlowMotion : MonoBehaviour
         haveTimeToTimeStop -= decayRate;
         if(haveTimeToTimeStop > 0)
         {
-            youMayStopTime=true;
+            canDash = true;
+            youMayStopTime =true;
         }
         else if(haveTimeToTimeStop<=0)
         {
+            canDash = false;
             youMayStopTime = false;
         }
     }
@@ -115,15 +153,6 @@ public class SlowMotion : MonoBehaviour
             
         }
     }
-    public void CanStopTimeAgainAfterDash()
-    {
-        if (dashToEnemy.isDashing == true )
-        {
-            canSlowTimeTimes ++;
-            RefillLenghtSoYouCanStopTimeAgain();
-            
-            //Debug.Log("wee");
-        }
-        
-    }
+    
+    
 }
